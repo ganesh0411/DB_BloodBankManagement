@@ -27,7 +27,7 @@ class SearchDonor extends Component {
     e.preventDefault();
     const { data } = this.state;
     const { Email_id } = data;
-    debugger;
+
     if (Email_id) {
       this.props.getDonorByEmailId(data, () => {
         history.push("/");
@@ -38,7 +38,7 @@ class SearchDonor extends Component {
   };
   render() {
     const { Email_id } = this.state.data;
-    const {isOpen}=this.state;
+    const { isOpen } = this.state;
     const { searchedData } = this.props;
     return (
       <React.Fragment>
@@ -75,13 +75,13 @@ class SearchDonor extends Component {
                 cursor: "pointer",
               }}
             >
-              <div style={{ minWidth: "300px", display: "inline-block" }}>
+              <div style={{ minWidth: "250px", display: "inline-block" }}>
                 Donor Name
               </div>
               <div style={{ minWidth: "200px", display: "inline-block" }}>
                 Blood Group
               </div>
-              <div style={{ minWidth: "350px", display: "inline-block" }}>
+              <div style={{ minWidth: "200px", display: "inline-block" }}>
                 Street
               </div>
               <div style={{ minWidth: "200px", display: "inline-block" }}>
@@ -107,13 +107,13 @@ class SearchDonor extends Component {
                 cursor: "pointer",
               }}
             >
-              <div style={{ minWidth: "300px", display: "inline-block" }}>
+              <div style={{ minWidth: "250px", display: "inline-block" }}>
                 {searchedData.Name}
               </div>
               <div style={{ minWidth: "200px", display: "inline-block" }}>
                 {searchedData.Blood_group}
               </div>
-              <div style={{ minWidth: "350px", display: "inline-block" }}>
+              <div style={{ minWidth: "200px", display: "inline-block" }}>
                 {searchedData.Street}
               </div>
               <div style={{ minWidth: "200px", display: "inline-block" }}>
@@ -135,12 +135,14 @@ class SearchDonor extends Component {
             </div>
           </div>
         )}
-        <Modal open={isOpen} closeHandler={this.closeModal}>
-          <AddBloodUnit
-            closeModal={this.closeModal}
-            Donor_id={searchedData.Donor_id}
-          />
-        </Modal>
+        {searchedData && (
+          <Modal open={isOpen} closeHandler={this.closeModal}>
+            <AddBloodUnit
+              closeModal={this.closeModal}
+              Donor_id={searchedData.Donor_id}
+            />
+          </Modal>
+        )}
       </React.Fragment>
     );
   }

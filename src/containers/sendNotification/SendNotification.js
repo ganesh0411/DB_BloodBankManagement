@@ -58,7 +58,7 @@ class SendNotification extends Component {
               <option value={5}>O-</option>
               <option value={6}>A-</option>
               <option value={7}>B-</option>
-              <option value={7}>AB-</option>
+              <option value={8}>AB-</option>
             </select>
           </div>
           <div

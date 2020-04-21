@@ -17,7 +17,7 @@ class UpdateEvent extends Component {
 
     const { Drive_id } = this.props.match.params;
     const { allEvents } = this.props;
-    debugger;
+    
     this.setState({ data: allEvents.filter((i) => i.Drive_id == Drive_id)[0] });
   }
   handleChange = (e) => {
@@ -30,18 +30,18 @@ class UpdateEvent extends Component {
     e.preventDefault();
     let { data } = this.state;
     data.Operator_id=this.props.Operator_id;
-    debugger;
+
     const { Name, Date_of_event, Venue, Operator_id, Drive_id } = data;
     if (Name && Date_of_event && Venue && Operator_id && Drive_id) {
       this.props.updateEvent(data, () => {
-        history.push("/");
+        history.push("/EventList");
       });
     } else {
       alert("Please enter valid data");
     }
   };
   render() {
-      debugger;
+
     const { Name, Date_of_event, Venue } = this.state.data;
     return (
       <div className="card" style={{ textAlign: "left", padding: "10px" }}>

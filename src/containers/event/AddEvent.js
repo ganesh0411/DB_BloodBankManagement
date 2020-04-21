@@ -24,7 +24,7 @@ class AddEvent extends Component {
     const { Name, Date_of_event, Venue, Operator_id } = data;
     if (Name && Date_of_event && Venue && Operator_id) {
       this.props.addEvent(data, () => {
-        history.push("/");
+        history.push("/EventList");
       });
     } else {
       alert("Please enter valid data");
@@ -33,7 +33,6 @@ class AddEvent extends Component {
   render() {
       
     const { Name, Date_of_event, Venue } = this.state.data;
-    debugger;
     return (
       <div className="card" style={{ textAlign: "left", padding: "10px" }}>
         <h4 style={{ textAlign: "left", paddingLeft: "10px" }}>Add Event</h4>

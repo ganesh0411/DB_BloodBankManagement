@@ -63,7 +63,7 @@ export default connect(
 class BlooCountForBloodBankItem extends Component {
   redirect = () => {
     const { data } = this.props;
-    history.push(`/branch/bloodunits/${data.Br_id}/${data.Br_Type}`);
+    history.push(`/branch/bloodunits/${data.Br_id}/${data.Br_Type}, ${data.Street}, ${data.City}, ${data.Zip}`);
   };
   render() {
     const { data: item } = this.props;
@@ -79,7 +79,7 @@ class BlooCountForBloodBankItem extends Component {
         }}
         onClick={this.redirect}
       >
-        <a href="#">{item.Br_Type}</a>
+        <a href="#">{item.Br_Type}, {item.Street}, {item.City}, {item.Zip}</a>
         <span style={{ float: "right" }}>
           <b>{item.Blood_Unit_Count}</b> Units
         </span>

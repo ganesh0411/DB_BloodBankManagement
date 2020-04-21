@@ -137,7 +137,7 @@ export const getBloodcountAndBloodBankName = (Bbank_id) => {
 };
 
 export const updateBloodUnit = (data, callback) => {
-  data.Case = 1;
+  data.case = 1;
   return (dispatch, getState) => {
     dispatch(startLoading());
     const url = AddBloodUnitUrl.replace(
@@ -162,7 +162,7 @@ export const updateBloodUnit = (data, callback) => {
 };
 
 export const moveBlood = (data, callback) => {
-  data.Case = 2;
+  data.case = 2;
   return (dispatch, getState) => {
     dispatch(startLoading());
     const url = AddBloodUnitUrl.replace(

@@ -9,7 +9,7 @@ class MoveBlood extends Component {
     data: {
       from_branch: "-1",
       to_branch: "-1",
-      Blood_Group: "",
+      Blood_Group: "1",
       Count: 0,
     },
   };
@@ -34,7 +34,7 @@ class MoveBlood extends Component {
       data.Count > 0
     ) {
       this.props.moveBlood(data, () => {
-        history.push("/");
+        history.push("/dashboard");
       });
     } else {
       alert("Please enter valid data");
@@ -61,9 +61,10 @@ class MoveBlood extends Component {
               value={from_branch}
             >
               <option value="-1">-- select --</option>
-              {branches&&branches.map((item) => (
-                <option value={item.Br_id}>{item.Br_Type}</option>
-              ))}
+              {branches &&
+                branches.map((item) => (
+                  <option value={item.Br_id}>{item.Br_Type}</option>
+                ))}
             </select>
           </div>
           <div style={{ margin: "10px", display: "inline-block" }}>
@@ -73,24 +74,30 @@ class MoveBlood extends Component {
               onChange={this.handleChange}
               value={to_branch}
             >
-              <option value="-1" >
-                -- select --
-              </option>
-              {branches&&branches.map((item) => (
-                <option value={item.Br_id} >
-                  {item.Br_Type}
-                </option>
-              ))}
+              <option value="-1">-- select --</option>
+              {branches &&
+                branches.map((item) => (
+                  <option value={item.Br_id}>{item.Br_Type}</option>
+                ))}
             </select>
           </div>
           <div style={{ margin: "10px", display: "inline-block" }}>
             <label>Blood Group : </label>
-            <input
-              type="text"
+
+            <select
               name="Blood_Group"
               value={Blood_Group}
               onChange={this.handleChange}
-            />
+            >
+              <option value={1}>O+</option>
+              <option value={2}>A+</option>
+              <option value={3}>B+</option>
+              <option value={4}>AB+</option>
+              <option value={5}>O-</option>
+              <option value={6}>A-</option>
+              <option value={7}>B-</option>
+              <option value={8}>AB-</option>
+            </select>
           </div>
           <div style={{ margin: "10px", display: "inline-block" }}>
             <label>Count : </label>

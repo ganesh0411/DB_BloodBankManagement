@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { updateBloodUnit, deleteBloodUnit } from "./action";
+import {history} from '../../Routes';
 class BloodUnitList extends Component {
   render() {
     const { data, Br_id } = this.props;
@@ -67,7 +68,7 @@ class BloodUnitRow extends Component {
     if (!Br_id) {
       Br_id = data.Br_id;
     }
-    this.props.deleteBloodUnit(Br_id, data.Blood_id, () => {});
+    this.props.deleteBloodUnit(Br_id, data.Blood_id, () => {history.push('/dashboard')});
   };
 
   render() {
@@ -90,10 +91,12 @@ class BloodUnitRow extends Component {
           {item.Blood_Group}
         </div>
         <div style={{ minWidth: "150px", display: "inline-block" }}>
-          {item.Donation_Date}
+          
+          {item.Donation_Date.split(" 00:00:00 GMT")[0]}
         </div>
         <div style={{ minWidth: "150px", display: "inline-block" }}>
-          {item.Date_of_Expiry}
+        {item.Date_of_Expiry.split(" 00:00:00 GMT")[0]}
+          
         </div>
         <div style={{ minWidth: "250px", display: "inline-block" }}>
           {item.Special_Attributes}

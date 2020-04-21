@@ -38,28 +38,34 @@ class AddBlooadUnit extends Component {
     //   { Br_id: 2, Br_name: "Sub" },
     // ];
     return (
-      <div>
+      <div style={{ textAlign: "left", padding: "10px" }}>
         <h4 style={{ textAlign: "left", paddingLeft: "10px" }}>
           Add Blood Unit
         </h4>
         <form onSubmit={this.add}>
-          <label>Branch</label>
-          <select name="Br_id" onChange={this.handleChange} value={Br_id}>
-            <option value="-1">-- select --</option>
-            {branches.map((item) => (
-              <option value={item.Br_id}>{item.Br_Type}</option>
-            ))}
-          </select>
-          <label>Speacial Attributes</label>
-          <input
-            type="text"
-            name="Special_Attributes"
-            value={Special_Attributes}
-            onChange={this.handleChange}
-          />
-          <button className="commonbtn" type="submit">
-            Add
-          </button>
+          <div style={{ margin: "10px", display: "inline-block" }}>
+            <label>Branch: </label>
+            <select name="Br_id" onChange={this.handleChange} value={Br_id}>
+              <option value="-1">-- select --</option>
+              {branches.map((item) => (
+                <option value={item.Br_id}>{item.Br_Type}</option>
+              ))}
+            </select>
+          </div>
+          <div style={{ margin: "10px", display: "inline-block" }}>
+            <label>Speacial Attributes: </label>
+            <input
+              type="text"
+              name="Special_Attributes"
+              value={Special_Attributes}
+              onChange={this.handleChange}
+            />
+          </div>
+          <div style={{ margin: "10px", display: "inline-block" }}>
+            <button className="commonbtn" type="submit">
+              Add
+            </button>
+          </div>
         </form>
       </div>
     );

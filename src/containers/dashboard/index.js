@@ -122,6 +122,30 @@ class index extends Component {
               <a href="#">Send Notification</a>
             </h5>
           </div>
+          <div
+            style={{
+              textAlign: "left",
+              marginLeft: "10px",
+              marginRight: "10px",
+              borderBottom: "grey solid 1px",
+              marginBottom: "5px",
+              cursor: "pointer",
+            }}
+            onClick={() => {
+              history.push(`/BloodLimitList`);
+            }}
+          >
+            <h5
+              style={{
+                textAlign: "left",
+                paddingLeft: "10px",
+                marginTop: "5px",
+              }}
+            >
+              <a href="#">Blood Stock Limit</a>
+            </h5>
+          </div>
+          
         </div>
       </div>
     );

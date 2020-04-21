@@ -47,7 +47,7 @@ class AddBranch extends Component {
       });
       
       this.props.addBranch({...data,Phone_no:obj}, () => {
-        history.push("/");
+        history.push("/ListBranch");
       });
     } else {
       alert("Please enter valid data");

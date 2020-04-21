@@ -32,8 +32,14 @@ class BloodList extends Component {
             cursor: "pointer",
           }}
         >
-          <div style={{ minWidth: "300px", display: "inline-block" }}>
-            Br_id
+          <div style={{ minWidth: "200px", display: "inline-block" }}>
+            Type
+          </div>
+          <div style={{ minWidth: "250px", display: "inline-block" }}>
+            Street
+          </div>
+          <div style={{ minWidth: "250px", display: "inline-block" }}>
+            City
           </div>
           <div style={{ minWidth: "200px", display: "inline-block" }}>
             Blood Group
@@ -108,9 +114,15 @@ class BloodLimitRow extends Component {
           cursor: "pointer",
         }}
       >
-        <div style={{ minWidth: "300px", display: "inline-block" }}>
-          {item.Br_id}
-        </div>
+        <div style={{ minWidth: "200px", display: "inline-block" }}>
+            {item.Br_Type}
+          </div>
+          <div style={{ minWidth: "250px", display: "inline-block" }}>
+            {item.Street}
+          </div>
+          <div style={{ minWidth: "250px", display: "inline-block" }}>
+            {item.City}
+          </div>
         <div style={{ minWidth: "200px", display: "inline-block" }}>
           {item.Blood_Group}
         </div>

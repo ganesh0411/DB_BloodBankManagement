@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { updateBranch, getbranchInfo } from "./action";
 import { connect } from "react-redux";
 import { history } from "../../Routes";
-import { setAuthorizationTokenInHeader } from "../../utils/axioConfig";
 
 class UpdateBranch extends Component {
   state = {
@@ -20,9 +19,9 @@ class UpdateBranch extends Component {
     this.props.getbranchInfo({ Br_id }, (data) => {
       data.Br_Type = data.Br_Type == "Sub Branch" ? 2 : 1;
       let Phone_no = [];
-      let keys = Object.keys(data.Phone_no);
+      let keys = Object.keys(data.phone_no);
       keys.forEach((item) => {
-        Phone_no.push(item);
+        Phone_no.push(data.phone_no[item]);
       });
       data.Phone_no = Phone_no;
       this.setState({ data });
@@ -61,7 +60,7 @@ class UpdateBranch extends Component {
         obj[i + ""] = item;
       });
       this.props.updateBranch({ ...data, Phone_no: obj }, () => {
-        history.push("/");
+        history.push("/ListBranch");
       });
     } else {
       alert("Please enter valid data");

@@ -1,12 +1,15 @@
 import axios from "axios";
-import { AddEventUrl, GetAllEventsUrl,GetAllActiveEventsUrl } from "../../utils/Constants";
+import {
+  AddEventUrl,
+  GetAllEventsUrl,
+  GetAllActiveEventsUrl,
+} from "../../utils/Constants";
 import {
   startLoading,
   stopLoading,
   addSnackbar,
   addAllEvents,
-  addAllActiveEvents
-
+  addAllActiveEvents,
 } from "../../reducer/appReducer";
 import { handleCatch } from "../../utils/utilityFunctions";
 
@@ -85,7 +88,6 @@ export const getAllEvents = () => {
     return axios
       .get(url)
       .then((response) => {
-          
         dispatch(addAllEvents(response.data.eventList));
         dispatch(stopLoading());
       })
@@ -96,16 +98,14 @@ export const getAllEvents = () => {
   };
 };
 
-export const getAllActiveEventsForGuest=()=>{
+export const getAllActiveEventsForGuest = () => {
   return (dispatch, getState) => {
     dispatch(startLoading());
-   
 
     return axios
       .get(GetAllActiveEventsUrl)
       .then((response) => {
-          
-        dispatch(addAllActiveEvents(response.data.eventList));
+        dispatch(addAllActiveEvents(response.data.events));
         dispatch(stopLoading());
       })
       .catch((e) => {
@@ -113,4 +113,4 @@ export const getAllActiveEventsForGuest=()=>{
         handleCatch(e);
       });
   };
-}
+};

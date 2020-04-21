@@ -54,6 +54,7 @@ class Guest extends Component {
             </button>
           </div>
         )}
+        <AllActiveEvents />
         <div
           className="card "
           style={{
@@ -112,7 +113,7 @@ class Guest extends Component {
               blood_groups.map((item) => <BloodGroupRow data={item} />)}
           </div>
         )}
-        <AllActiveEvents />
+        
       </div>
     );
   }

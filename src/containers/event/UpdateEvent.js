@@ -9,15 +9,14 @@ class UpdateEvent extends Component {
       Date_of_event: "",
       Venue: "",
       Operator_id: "",
-      Drive_id:'',
+      Drive_id: "",
     },
   };
 
   componentDidMount() {
-
     const { Drive_id } = this.props.match.params;
     const { allEvents } = this.props;
-    
+
     this.setState({ data: allEvents.filter((i) => i.Drive_id == Drive_id)[0] });
   }
   handleChange = (e) => {
@@ -29,7 +28,7 @@ class UpdateEvent extends Component {
   update = (e) => {
     e.preventDefault();
     let { data } = this.state;
-    data.Operator_id=this.props.Operator_id;
+    data.Operator_id = this.props.Operator_id;
 
     const { Name, Date_of_event, Venue, Operator_id, Drive_id } = data;
     if (Name && Date_of_event && Venue && Operator_id && Drive_id) {
@@ -41,7 +40,6 @@ class UpdateEvent extends Component {
     }
   };
   render() {
-
     const { Name, Date_of_event, Venue } = this.state.data;
     return (
       <div className="card" style={{ textAlign: "left", padding: "10px" }}>

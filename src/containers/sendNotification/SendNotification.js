@@ -8,7 +8,7 @@ class SendNotification extends Component {
     data: {
       Blood_Group: 1,
       Bbank_id: this.props.Bbank_id,
-      Body: "",
+      body: "",
     },
   };
   handleChange = (e) => {
@@ -20,9 +20,9 @@ class SendNotification extends Component {
   send = (e) => {
     e.preventDefault();
     const { data } = this.state;
-    const { Blood_Group, Body, Bbank_id } = data;
+    const { Blood_Group, body, Bbank_id } = data;
 
-    if (Blood_Group && Body && Bbank_id) {
+    if (Blood_Group && body && Bbank_id) {
       this.props.sendNotificationRequest(data, () => {
         history.push("/dashboard");
       });
@@ -31,7 +31,7 @@ class SendNotification extends Component {
     }
   };
   render() {
-    const { Blood_Group, Body } = this.state.data;
+    const { Blood_Group, body } = this.state.data;
     return (
       <div className="card" style={{ textAlign: "left", padding: "10px" }}>
         <h4 style={{ textAlign: "left", paddingLeft: "10px" }}>
@@ -71,8 +71,8 @@ class SendNotification extends Component {
             <label style={{ verticalAlign: "top" }}>Message Body : </label>
             <textarea
               type="text"
-              name="Body"
-              value={Body}
+              name="body"
+              value={body}
               onChange={this.handleChange}
             />
           </div>

@@ -15,7 +15,7 @@ app.use(cors());
 
 
 //Host react application on root url
-app.get("/", (req, res) => {
+app.get("*", (req, res) => {
   res.sendFile(path.join(publicPath, "index.html"));
 });
 

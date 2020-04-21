@@ -6,6 +6,7 @@ import {
   getBloodCountForBranchForGuest,
 } from "./action";
 import { history } from "../../Routes";
+import AllActiveEvents from "../event/AllActiveEvents";
 class Guest extends Component {
   state = {
     selectedBloodBank: null,
@@ -33,19 +34,7 @@ class Guest extends Component {
       blood_bank_branches,
       blood_groups,
     } = this.props;
-    // blood_banks = [
-    //   { Bbank_id: 1, Blood_Bank_Name: "Red Cross", Blood_Unit_Count: 50 },
-    //   { Bbank_id: 2, Blood_Bank_Name: "Prathma", Blood_Unit_Count: 500 },
-    // ];
-    // blood_bank_branches = [
-    //   { Br_id: 1, Br_Type: "Main", Blood_Unit_Count: 50 },
-    //   { Br_id: 2, Br_Type: "Sub", Blood_Unit_Count: 500 },
-    // ];
-    // blood_groups = [
-    //   { Blood_Group: "A+", Blood_Unit_Count: 10 },
-    //   { Blood_Group: "A-", Blood_Unit_Count: 10 },
-    //   { Blood_Group: "AB+", Blood_Unit_Count: 10 },
-    // ];
+
     return (
       <div>
         {!loginData && (
@@ -123,6 +112,7 @@ class Guest extends Component {
               blood_groups.map((item) => <BloodGroupRow data={item} />)}
           </div>
         )}
+        <AllActiveEvents />
       </div>
     );
   }

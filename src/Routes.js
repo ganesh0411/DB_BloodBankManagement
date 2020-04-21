@@ -36,6 +36,7 @@ import UpdateEvent from "./containers/event/UpdateEvent";
 import AddEvent from "./containers/event/AddEvent";
 import BloodLimitList from "./containers/bloodLimit/BloodLimitList";
 import UpdateBloodLimit from "./containers/bloodLimit/UpdateBloodLimit";
+import SendNotification from "./containers/sendNotification/SendNotification";
 
 export const history = createBrowserHistory();
 
@@ -323,6 +324,11 @@ class Routes extends Component {
                 component={AddEvent}
                 exact={true}
                 type="create"
+              />
+              <PrivateRoute
+                path={"/sendNotification"}
+                component={SendNotification}
+                exact={true}
               />
               <Route path={`/login`} component={Login} />
               <Route path={`/`} component={Guest} />

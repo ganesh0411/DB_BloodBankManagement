@@ -71,7 +71,7 @@ class EventList extends Component {
             Delete
           </div>
         </div>
-        {data.map((item) => (
+        {data&&data.map((item) => (
           <EventRow data={item} delete={this.deleteEvent} />
         ))}
       </div>

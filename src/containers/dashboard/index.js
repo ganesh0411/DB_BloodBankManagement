@@ -99,6 +99,29 @@ class index extends Component {
               <a href="#">List Expired Blood Units</a>
             </h5>
           </div>
+          <div
+            style={{
+              textAlign: "left",
+              marginLeft: "10px",
+              marginRight: "10px",
+              borderBottom: "grey solid 1px",
+              marginBottom: "5px",
+              cursor: "pointer",
+            }}
+            onClick={() => {
+              history.push(`/sendNotification`);
+            }}
+          >
+            <h5
+              style={{
+                textAlign: "left",
+                paddingLeft: "10px",
+                marginTop: "5px",
+              }}
+            >
+              <a href="#">Send Notification</a>
+            </h5>
+          </div>
         </div>
       </div>
     );

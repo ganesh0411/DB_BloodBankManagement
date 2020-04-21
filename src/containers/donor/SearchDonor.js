@@ -1,13 +1,21 @@
 import React, { Component } from "react";
 import { getDonorByEmailId, deleteDonor } from "./action";
-import { connect, ReactReduxContext } from "react-redux";
+import { connect } from "react-redux";
 import { history } from "../../Routes";
-
+import Modal from "../../components/Modal";
+import AddBloodUnit from "../blood/AddBloodUnit";
 class SearchDonor extends Component {
   state = {
     data: {
       Email_id: "",
     },
+    isOpen: false,
+  };
+  addUnit = () => {
+    this.setState({ isOpen: true });
+  };
+  closeModal = () => {
+    this.setState({ isOpen: false });
   };
   handleChange = (e) => {
     const key = e.target.name;
@@ -30,6 +38,7 @@ class SearchDonor extends Component {
   };
   render() {
     const { Email_id } = this.state.data;
+    const {isOpen}=this.state;
     const { searchedData } = this.props;
     return (
       <React.Fragment>
@@ -54,63 +63,84 @@ class SearchDonor extends Component {
             </div>
           </form>
         </div>
-        {searchedData && <div className="card">
-        <div
-          style={{
-            textAlign: "left",
-            marginLeft: "10px",
-            marginRight: "10px",
-            borderBottom: "grey solid 1px",
-            marginBottom: "5px",
-            cursor: "pointer",
-          }}
-        >
-          <div style={{ minWidth: "300px", display: "inline-block" }}>
-            Donor Name
+        {searchedData && (
+          <div className="card">
+            <div
+              style={{
+                textAlign: "left",
+                marginLeft: "10px",
+                marginRight: "10px",
+                borderBottom: "grey solid 1px",
+                marginBottom: "5px",
+                cursor: "pointer",
+              }}
+            >
+              <div style={{ minWidth: "300px", display: "inline-block" }}>
+                Donor Name
+              </div>
+              <div style={{ minWidth: "200px", display: "inline-block" }}>
+                Blood Group
+              </div>
+              <div style={{ minWidth: "350px", display: "inline-block" }}>
+                Street
+              </div>
+              <div style={{ minWidth: "200px", display: "inline-block" }}>
+                City
+              </div>
+              <div style={{ minWidth: "250px", display: "inline-block" }}>
+                Add Blood Unit
+              </div>
+              <div style={{ minWidth: "50px", display: "inline-block" }}>
+                Edit
+              </div>
+              <div style={{ minWidth: "50px", display: "inline-block" }}>
+                Delete
+              </div>
+            </div>
+            <div
+              style={{
+                textAlign: "left",
+                marginLeft: "10px",
+                marginRight: "10px",
+                borderBottom: "grey solid 1px",
+                marginBottom: "5px",
+                cursor: "pointer",
+              }}
+            >
+              <div style={{ minWidth: "300px", display: "inline-block" }}>
+                {searchedData.Name}
+              </div>
+              <div style={{ minWidth: "200px", display: "inline-block" }}>
+                {searchedData.Blood_group}
+              </div>
+              <div style={{ minWidth: "350px", display: "inline-block" }}>
+                {searchedData.Street}
+              </div>
+              <div style={{ minWidth: "200px", display: "inline-block" }}>
+                {searchedData.City}
+              </div>
+              <div
+                style={{ minWidth: "250px", display: "inline-block" }}
+                onClick={this.addUnit}
+              >
+                <a href="#">Add Blood Unit</a>
+              </div>
+              <div style={{ minWidth: "50px", display: "inline-block" }}>
+                {" "}
+                <a href="#">Edit</a>
+              </div>
+              <div style={{ minWidth: "50px", display: "inline-block" }}>
+                <a href="#">Delete</a>
+              </div>
+            </div>
           </div>
-          <div style={{ minWidth: "200px", display: "inline-block" }}>
-            Blood Group
-          </div>
-          <div style={{ minWidth: "350px", display: "inline-block" }}>
-            Street
-          </div>
-          <div style={{ minWidth: "200px", display: "inline-block" }}>
-            City
-          </div>
-          <div style={{ minWidth: "50px", display: "inline-block" }}>Edit</div>
-          <div style={{ minWidth: "50px", display: "inline-block" }}>
-            Delete
-          </div>
-        </div>
-        <div
-          style={{
-            textAlign: "left",
-            marginLeft: "10px",
-            marginRight: "10px",
-            borderBottom: "grey solid 1px",
-            marginBottom: "5px",
-            cursor: "pointer",
-          }}
-        >
-          <div style={{ minWidth: "300px", display: "inline-block" }}>
-            {searchedData.Name}
-          </div>
-          <div style={{ minWidth: "200px", display: "inline-block" }}>
-          {searchedData.Blood_group}
-          </div>
-          <div style={{ minWidth: "350px", display: "inline-block" }}>
-          {searchedData.Street}
-          </div>
-          <div style={{ minWidth: "200px", display: "inline-block" }}>
-          {searchedData.City}
-          </div>
-          <div style={{ minWidth: "50px", display: "inline-block" }}> <a href="#">Edit</a></div>
-          <div style={{ minWidth: "50px", display: "inline-block" }}>
-          <a href="#">Delete</a>
-          </div>
-        </div>
-        
-       </div>}
+        )}
+        <Modal open={isOpen} closeHandler={this.closeModal}>
+          <AddBloodUnit
+            closeModal={this.closeModal}
+            Donor_id={searchedData.Donor_id}
+          />
+        </Modal>
       </React.Fragment>
     );
   }

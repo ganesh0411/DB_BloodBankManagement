@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { addBloodUnit } from "./action";
 import { getBranchList } from "../branch/action";
+import { connect } from "react-redux";
 class AddBlooadUnit extends Component {
   state = {
     data: {
@@ -24,7 +25,7 @@ class AddBlooadUnit extends Component {
     e.preventDefault();
     const { data } = this.state;
     if (data.Br_id != "-1") {
-      this.props.addBloodUnit(data, () => {});
+      this.props.addBloodUnit(data, this.props.closeModal);
     } else {
       alert("Select branch");
     }
@@ -38,6 +39,9 @@ class AddBlooadUnit extends Component {
     // ];
     return (
       <div>
+        <h4 style={{ textAlign: "left", paddingLeft: "10px" }}>
+          Add Blood Unit
+        </h4>
         <form onSubmit={this.add}>
           <label>Branch</label>
           <select name="Br_id" onChange={this.handleChange} value={Br_id}>

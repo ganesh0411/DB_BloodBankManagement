@@ -17,6 +17,7 @@ const defaultState = {
   allOperators: [],
   bloodBankList: [],
   allEvents: [],
+  allActiveEvents:[],
   searchDonor: null,
   bloodLimit: [],
 };
@@ -44,6 +45,7 @@ const actionType = {
   ADD_ALL_OPERATORS: "ADD_ALL_OPERATORS",
   ADD_BLOOD_BANK_LIST: "ADD_BLOOD_BANK_LIST",
   ADD_ALL_EVENTS: "ADD_ALL_EVENTS",
+  ADD_ALL_ACTIVE_EVENTS:"ADD_ALL_ACTIVE_EVENTS",
   ADD_SEARCH_DONOR_LIST: "ADD_SEARCH_DONOR_LIST",
   ADD_BLOOD_LIMIT: "ADD_BLOOD_LIMIT",
 };
@@ -114,6 +116,9 @@ const appReducer = (state = defaultState, action) => {
     }
     case actionType.ADD_ALL_EVENTS: {
       return { ...state, allEvents: action.payload };
+    }
+    case actionType.ADD_ALL_ACTIVE_EVENTS:{
+      return { ...state, allActiveEvents: action.payload };
     }
     case actionType.ADD_BLOOD_LIMIT: {
       return { ...state, bloodLimit: action.payload };
@@ -205,6 +210,10 @@ export const addBloodBankList = (data) => {
 export const addAllEvents = (data) => {
   return { type: actionType.ADD_ALL_EVENTS, payload: data };
 };
+export const addAllActiveEvents = (data) => {
+  return { type: actionType.ADD_ALL_ACTIVE_EVENTS, payload: data };
+};
+
 export const addSearchDonorList = (data) => {
   return { type: actionType.ADD_SEARCH_DONOR_LIST, payload: data };
 };

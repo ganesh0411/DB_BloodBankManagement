@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { getDonorByEmailId, deleteDonor } from "./action";
+import { addSearchDonorList } from "../../reducer/appReducer";
 import { connect } from "react-redux";
 import { history } from "../../Routes";
 import Modal from "../../components/Modal";
@@ -17,6 +18,9 @@ class SearchDonor extends Component {
   closeModal = () => {
     this.setState({ isOpen: false });
   };
+  componentWillUnmount() {
+    this.props.reset();
+  }
   handleChange = (e) => {
     const key = e.target.name;
     let { data } = this.state;
@@ -29,6 +33,7 @@ class SearchDonor extends Component {
     const { Email_id } = data;
 
     if (Email_id) {
+      this.props.reset();
       this.props.getDonorByEmailId(data, () => {
         history.push("/");
       });
@@ -161,6 +166,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     deleteDonor: (data, callback) => {
       dispatch(deleteDonor(data, callback));
+    },
+    reset: () => {
+      dispatch(addSearchDonorList(null));
     },
   };
 };

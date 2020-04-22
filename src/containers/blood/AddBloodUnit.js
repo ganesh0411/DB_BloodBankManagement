@@ -53,7 +53,7 @@ class AddBlooadUnit extends Component {
             </select>
           </div>
           <div style={{ margin: "10px", display: "inline-block" }}>
-            <label>Speacial Attributes: </label>
+            <label>Special Attributes: </label>
             <input
               type="text"
               name="Special_Attributes"

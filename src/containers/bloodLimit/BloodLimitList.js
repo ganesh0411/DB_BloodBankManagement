@@ -98,7 +98,7 @@ class BloodLimitRow extends Component {
       this.props.update(data);
       this.toggleEdit();
     }else{
-      alert('Please enter valid Limit.')
+      alert('Please enter limit greater than or equal to 0.')
     }
     
 

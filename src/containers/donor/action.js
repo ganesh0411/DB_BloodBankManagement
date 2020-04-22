@@ -84,9 +84,17 @@ export const getDonorByEmailId = (data) => {
     return axios
       .get(`${GetDonorByEmailIdUrl}?Email_id=${data.Email_id}`)
       .then((response) => {
-        debugger;
-        
-        dispatch(addSearchDonorList(response.data.message));
+        if (response.data.status == 500) {
+          dispatch(
+            addSnackbar(
+              { success: false, error: response.data.message },
+              dispatch
+            )
+          );
+        } else {
+          dispatch(addSearchDonorList(response.data.message));
+        }
+
         dispatch(stopLoading());
       })
       .catch((e) => {

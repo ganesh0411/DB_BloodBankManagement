@@ -5,9 +5,7 @@ import BlooCountForBloodBank from "../blood/BlooCountForBloodBank";
 import { history } from "../../Routes";
 class index extends Component {
   componentDidMount() {
-    if (!this.props.data) {
-      this.props.getBloodcountAndBloodBankName();
-    }
+    this.props.getBloodcountAndBloodBankName();
   }
   render() {
     let { data } = this.props;
@@ -145,7 +143,6 @@ class index extends Component {
               <a href="#">Blood Stock Limit</a>
             </h5>
           </div>
-          
         </div>
       </div>
     );

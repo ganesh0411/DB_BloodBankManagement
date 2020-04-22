@@ -16,7 +16,7 @@ class BloodUnitListForBranchForBloodGroup extends Component {
   }
   delete = () => {
     this.props.deleteAll(() => {
-      history.push("/");
+      history.push("/dashboard");
     });
   };
   render() {

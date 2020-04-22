@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { updateBloodUnit, deleteBloodUnit } from "./action";
-import {history} from '../../Routes';
+import { history } from "../../Routes";
 class BloodUnitList extends Component {
   render() {
-    const { data, Br_id } = this.props;
+    const { data, Br_id, isExpired } = this.props;
     return (
       <div>
         <div
@@ -32,19 +32,25 @@ class BloodUnitList extends Component {
           <div style={{ minWidth: "250px", display: "inline-block" }}>
             Special_Attributes
           </div>
-          <div style={{ minWidth: "50px", display: "inline-block" }}>Edit</div>
+          {!isExpired && (
+            <div style={{ minWidth: "50px", display: "inline-block" }}>
+              Edit
+            </div>
+          )}
           <div style={{ minWidth: "50px", display: "inline-block" }}>
             Delete
           </div>
         </div>
-        {data&&data.map((item) => (
-          <BloodUnitRow
-            data={item}
-            updateBloodUnit={this.props.updateBloodUnit}
-            deleteBloodUnit={this.props.deleteBloodUnit}
-            Br_id={Br_id}
-          />
-        ))}
+        {data &&
+          data.map((item) => (
+            <BloodUnitRow
+              data={item}
+              updateBloodUnit={this.props.updateBloodUnit}
+              deleteBloodUnit={this.props.deleteBloodUnit}
+              isExpired={isExpired}
+              Br_id={Br_id}
+            />
+          ))}
       </div>
     );
   }
@@ -68,11 +74,13 @@ class BloodUnitRow extends Component {
     if (!Br_id) {
       Br_id = data.Br_id;
     }
-    this.props.deleteBloodUnit(Br_id, data.Blood_id, () => {history.push('/dashboard')});
+    this.props.deleteBloodUnit(Br_id, data.Blood_id, () => {
+      history.push("/dashboard");
+    });
   };
 
   render() {
-    const { data: item } = this.props;
+    const { data: item, isExpired } = this.props;
     return (
       <div
         style={{
@@ -91,19 +99,19 @@ class BloodUnitRow extends Component {
           {item.Blood_Group}
         </div>
         <div style={{ minWidth: "150px", display: "inline-block" }}>
-          
           {item.Donation_Date.split(" 00:00:00 GMT")[0]}
         </div>
         <div style={{ minWidth: "150px", display: "inline-block" }}>
-        {item.Date_of_Expiry.split(" 00:00:00 GMT")[0]}
-          
+          {item.Date_of_Expiry.split(" 00:00:00 GMT")[0]}
         </div>
         <div style={{ minWidth: "250px", display: "inline-block" }}>
           {item.Special_Attributes}
         </div>
-        <div style={{ minWidth: "50px", display: "inline-block" }}>
-          <a href="#">Edit</a>
-        </div>
+        {!isExpired && (
+          <div style={{ minWidth: "50px", display: "inline-block" }}>
+            <a href="#">Edit</a>
+          </div>
+        )}
         <div
           style={{ minWidth: "50px", display: "inline-block" }}
           onClick={this.delete}

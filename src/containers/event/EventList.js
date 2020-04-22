@@ -120,7 +120,7 @@ class EventRow extends Component {
           {item.Name}
         </div>
         <div style={{ minWidth: "200px", display: "inline-block" }}>
-         {item.Date_of_event.split(" 00:00:00 GMT")[0]}
+         {item.Date_of_event&&item.Date_of_event.split(" 00:00:00 GMT")[0]}
         </div>
         <div style={{ minWidth: "300px", display: "inline-block" }}>
           {item.Venue}

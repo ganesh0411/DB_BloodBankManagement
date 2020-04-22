@@ -193,7 +193,7 @@ class BranchRow extends Component {
         className={item.Br_id == selected && "selected"}
         onClick={this.select}
       >
-        <a href="#">{item.Br_Type}</a>
+        <a href="#">{item.Br_Type}, {item.Street}</a>
         <span style={{ float: "right" }}>
           <b>{item.Blood_Unit_Count}</b> Units
         </span>

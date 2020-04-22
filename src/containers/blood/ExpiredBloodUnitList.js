@@ -52,7 +52,7 @@ class BloodUnitListForBranchForBloodGroup extends Component {
             Delete All
           </button>
         </h4>
-        <BloodUnitList data={data} />
+        <BloodUnitList data={data} isExpired={true} />
       </div>
     );
   }

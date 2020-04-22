@@ -48,7 +48,7 @@ class AddBlooadUnit extends Component {
             <select name="Br_id" onChange={this.handleChange} value={Br_id}>
               <option value="-1">-- select --</option>
               {branches.map((item) => (
-                <option value={item.Br_id}>{item.Br_Type}</option>
+                <option value={item.Br_id}>{item.Br_Type}, {item.Street}, {item.City}</option>
               ))}
             </select>
           </div>

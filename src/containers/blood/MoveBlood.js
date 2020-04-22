@@ -63,7 +63,7 @@ class MoveBlood extends Component {
               <option value="-1">-- select --</option>
               {branches &&
                 branches.map((item) => (
-                  <option value={item.Br_id}>{item.Br_Type}</option>
+                  <option value={item.Br_id}>{item.Br_Type}, {item.Street}, {item.City}</option>
                 ))}
             </select>
           </div>
@@ -77,7 +77,7 @@ class MoveBlood extends Component {
               <option value="-1">-- select --</option>
               {branches &&
                 branches.map((item) => (
-                  <option value={item.Br_id}>{item.Br_Type}</option>
+                  <option value={item.Br_id}>{item.Br_Type}, {item.Street}, {item.City}</option>
                 ))}
             </select>
           </div>

@@ -91,10 +91,17 @@ class BloodLimitRow extends Component {
     this.setState({ edit: !edit,Btype_Limits:this.props.data.Btype_Limits });
   };
   save = () => {
+    
     let { data } = this.props;
     data.Btype_Limits=this.state.Btype_Limits;
-    this.props.update(data);
-    this.toggleEdit();
+    if(data.Btype_Limits&&data.Btype_Limits>=0){
+      this.props.update(data);
+      this.toggleEdit();
+    }else{
+      alert('Please enter valid Limit.')
+    }
+    
+
   };
   handleChange = (e) => {
     this.setState({ Btype_Limits: e.target.value });
@@ -134,6 +141,7 @@ class BloodLimitRow extends Component {
           <div style={{ minWidth: "200px", display: "inline-block" }}>
             <input
               type="number"
+              min={0}
               value={Btype_Limits}
               name="Btype_Limits"
               onChange={this.handleChange}

@@ -40,7 +40,7 @@ import AdminDashboard from "./containers/dashboard/AdminDashboard";
 import EmergencyContactList from "./containers/emergencyContactInfo/EmergencyContactList";
 import AddEmergencyContact from "./containers/emergencyContactInfo/AddEmergencyContact";
 import UpdateEmergencyContact from "./containers/emergencyContactInfo/UpdateEmergencyContact";
-
+import BackgroundImage from "./assets/images/background.jpg";
 export const history = createBrowserHistory();
 
 export const fakeAuth = {
@@ -95,13 +95,24 @@ class Routes extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div
+        className="App"
+        style={{
+          backgroundImage: `url(${BackgroundImage})`,
+          backgroundRepeat: "no-repeat",
+          width: "100vw",
+          height: "100vh",
+        }}
+      >
         <Router history={history}>
           {this.props.loading > 0 && <Loader />}
           {this.props.auth &&
             this.props.auth.loginData &&
             this.props.auth.loginData.access_token && (
-              <nav className="navbar navbar-expand-lg navbar-light bg-light navbar-default">
+              <nav
+                className="navbar navbar-expand-lg navbar-light  navbar-default"
+                style={{ backgroundColor: "#ff0260b8", color: "white" }}
+              >
                 <button
                   class="navbar-toggler"
                   type="button"
@@ -213,7 +224,10 @@ class Routes extends Component {
                     )}
                   </ul>
 
-                  <ul className="nav navbar-nav navbar-right">
+                  <ul
+                    className="nav navbar-nav navbar-right"
+                    style={{ position: "fixed", right: "10px" }}
+                  >
                     {" "}
                     <li
                       class="nav-item"

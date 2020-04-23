@@ -106,7 +106,7 @@ export const getEmergencyContactInfo = (data, callback) => {
         `${GetParticularEmergencyContactOfDonorUrl}?Donor_id=${data.Donor_id}&Phone_no=${data.Phone_no}`
       )
       .then((response) => {
-        callback && callback(response.data.entry);
+        callback && callback(response.data.contact_list);
 
         dispatch(stopLoading());
       })

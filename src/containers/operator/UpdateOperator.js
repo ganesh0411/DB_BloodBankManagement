@@ -38,7 +38,7 @@ class UpdateOperator extends Component {
     const { Name, Email, Password, Bbank_id, Operator_id } = data;
     if (Name && Email && Password && Bbank_id != "-1" && Operator_id) {
       this.props.updateOperator(data, () => {
-        history.push("/");
+        history.push("/ListOperator");
       });
     } else {
       alert("Please enter valid data");

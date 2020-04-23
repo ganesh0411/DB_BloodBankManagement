@@ -31,7 +31,7 @@ class AddOperator extends Component {
     debugger;
     if (Name && Email && Password && Bbank_id != "-1") {
       this.props.addOpeator(data, () => {
-        history.push("/");
+        history.push("/ListOperator");
       });
     } else {
       alert("Please enter valid data");
@@ -85,9 +85,10 @@ class AddOperator extends Component {
               <option value="-1" selected={Bbank_id == "-1"}>
                 -- select --
               </option>
-              {bloodBanks&&bloodBanks.map((item) => (
-                <option value={item.Bbank_id}>{item.Name}</option>
-              ))}
+              {bloodBanks &&
+                bloodBanks.map((item) => (
+                  <option value={item.Bbank_id}>{item.Name}</option>
+                ))}
             </select>
           </div>
           <div style={{ margin: "10px", display: "inline-block" }}>

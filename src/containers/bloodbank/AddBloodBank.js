@@ -23,7 +23,7 @@ class AddBloodBank extends Component {
     const { Name, Type, Phone_no } = data;
     if (Name && Type && Phone_no) {
       this.props.addBloodBank(data, () => {
-        history.push("/");
+        history.push("/BloodBankList");
       });
     }else{
         alert('Please enter valid data')

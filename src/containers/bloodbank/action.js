@@ -16,6 +16,12 @@ export const addBloodBank = (data, callback) => {
       .post(`${AddBloodBankUrl}`, data)
       .then((response) => {
         dispatch(stopLoading());
+        dispatch(
+          addSnackbar(
+            { success: true, error: "Bloodbank added successfully" },
+            dispatch
+          )
+        );
         callback && callback();
       })
       .catch((e) => {
@@ -33,6 +39,12 @@ export const updateBloodBank = (data, callback) => {
       .put(`${AddBloodBankUrl}`, data)
       .then((response) => {
         dispatch(stopLoading());
+        dispatch(
+          addSnackbar(
+            { success: true, error: "Bloodbank updated successfully" },
+            dispatch
+          )
+        );
         callback && callback();
       })
       .catch((e) => {
@@ -50,6 +62,12 @@ export const deleteBloodBank = (Bbank_id, callback) => {
       .delete(`${AddBloodBankUrl}?Bbank_id=${Bbank_id}`)
       .then((response) => {
         dispatch(stopLoading());
+        dispatch(
+          addSnackbar(
+            { success: true, error: "Bloodbank deleted successfully" },
+            dispatch
+          )
+        );
         callback && callback();
       })
       .catch((e) => {
@@ -67,6 +85,7 @@ export const getAllBloodBankInfo = () => {
       .get(`${AddBloodBankUrl}?case=1`)
       .then((response) => {
         dispatch(addBloodBankList(response.data.result));
+
         dispatch(stopLoading());
       })
       .catch((e) => {

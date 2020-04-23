@@ -117,7 +117,7 @@ class OperatorRow extends Component {
           {item.Email}
         </div>
         <div style={{ minWidth: "300px", display: "inline-block" }}>
-          {item.Blood_Bank_Name}
+          {item.Bbank_Name}
         </div>
         <div
           style={{ minWidth: "50px", display: "inline-block" }}

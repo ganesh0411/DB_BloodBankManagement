@@ -29,7 +29,7 @@ class UpdateBloodBank extends Component {
     const { Name, Type, Phone_no, Bbank_id } = data;
     if (Name && Type && Phone_no && Bbank_id) {
       this.props.updateBloodBank(data, () => {
-        history.push("/");
+        history.push("/BloodBankList");
       });
     }
     else{

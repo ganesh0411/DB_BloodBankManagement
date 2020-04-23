@@ -16,7 +16,10 @@ export const addOpeator = (data, callback) => {
       .post(`${AddOperatorUrl}`, data)
       .then((response) => {
         dispatch(
-          addSnackbar({ success: true, error: response.data.message }, dispatch)
+          addSnackbar(
+            { success: true, error: "Operator added successfully" },
+            dispatch
+          )
         );
         dispatch(stopLoading());
         callback && callback();
@@ -56,7 +59,10 @@ export const deleteOperator = (Operator_id, callback) => {
       .delete(`${UpdateOpeatorUrl}?Operator_id=${Operator_id}`)
       .then((response) => {
         dispatch(
-          addSnackbar({ success: true, error: response.data.message }, dispatch)
+          addSnackbar(
+            { success: true, error: "Operator deleted successfully" },
+            dispatch
+          )
         );
         dispatch(stopLoading());
         callback && callback();

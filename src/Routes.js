@@ -30,7 +30,6 @@ import AddOperator from "./containers/operator/AddOperator";
 import UpdateOperator from "./containers/operator/UpdateOperator";
 import OperatorList from "./containers/operator/OperatorList";
 import AddDonor from "./containers/donor/AddDonor";
-import UpdateDonor from "./containers/donor/UpdateDonor";
 import EventList from "./containers/event/EventList";
 import UpdateEvent from "./containers/event/UpdateEvent";
 import AddEvent from "./containers/event/AddEvent";
@@ -38,6 +37,9 @@ import BloodLimitList from "./containers/bloodLimit/BloodLimitList";
 import UpdateBloodLimit from "./containers/bloodLimit/UpdateBloodLimit";
 import SendNotification from "./containers/sendNotification/SendNotification";
 import AdminDashboard from "./containers/dashboard/AdminDashboard";
+import EmergencyContactList from "./containers/emergencyContactInfo/EmergencyContactList";
+import AddEmergencyContact from "./containers/emergencyContactInfo/AddEmergencyContact";
+import UpdateEmergencyContact from "./containers/emergencyContactInfo/UpdateEmergencyContact";
 
 export const history = createBrowserHistory();
 
@@ -294,12 +296,6 @@ class Routes extends Component {
                 component={SearchDonor}
                 exact={true}
               />
-              <PrivateRoute
-                path={"/UpdateDonor/:Donor_id"}
-                component={UpdateDonor}
-                type="modify"
-                exact={true}
-              />
 
               <PrivateRoute
                 path={"/AddDonor"}
@@ -363,6 +359,21 @@ class Routes extends Component {
               <PrivateRoute
                 path={"/sendNotification"}
                 component={SendNotification}
+                exact={true}
+              />
+              <PrivateRoute
+                path={"/ListEmergencyContacts/:Donor_id/:Donor_Name"}
+                component={EmergencyContactList}
+                exact={true}
+              />
+              <PrivateRoute
+                path={"/AddEmergencyContact/:Donor_id/:Donor_Name"}
+                component={AddEmergencyContact}
+                exact={true}
+              />
+              <PrivateRoute
+                path={"/UpdateEmergencyContact/:Donor_id/:Donor_Name/:Phone_no"}
+                component={UpdateEmergencyContact}
                 exact={true}
               />
               <Route path={`/login`} component={Login} />

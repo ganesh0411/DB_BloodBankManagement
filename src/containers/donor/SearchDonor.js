@@ -65,7 +65,11 @@ class SearchDonor extends Component {
           <h4 style={{ textAlign: "left", paddingLeft: "10px" }}>
             Search Donor
             <button
-              style={{ margin: "10px", display: "inline-block",float:'right' }}
+              style={{
+                margin: "10px",
+                display: "inline-block",
+                float: "right",
+              }}
               className="commonbtn"
               onClick={() => {
                 history.push("/AddDonor");
@@ -103,10 +107,10 @@ class SearchDonor extends Component {
                 cursor: "pointer",
               }}
             >
-              <div style={{ minWidth: "250px", display: "inline-block" }}>
+              <div style={{ minWidth: "220px", display: "inline-block" }}>
                 Donor Name
               </div>
-              <div style={{ minWidth: "200px", display: "inline-block" }}>
+              <div style={{ minWidth: "150px", display: "inline-block" }}>
                 Blood Group
               </div>
               <div style={{ minWidth: "200px", display: "inline-block" }}>
@@ -121,8 +125,11 @@ class SearchDonor extends Component {
               <div style={{ minWidth: "50px", display: "inline-block" }}>
                 Edit
               </div>
-              <div style={{ minWidth: "50px", display: "inline-block" }}>
+              <div style={{ minWidth: "70px", display: "inline-block" }}>
                 Delete
+              </div>
+              <div style={{ minWidth: "230px", display: "inline-block" }}>
+                Emergency Contact
               </div>
             </div>
             <div
@@ -135,10 +142,10 @@ class SearchDonor extends Component {
                 cursor: "pointer",
               }}
             >
-              <div style={{ minWidth: "250px", display: "inline-block" }}>
+              <div style={{ minWidth: "220px", display: "inline-block" }}>
                 {searchedData.Name}
               </div>
-              <div style={{ minWidth: "200px", display: "inline-block" }}>
+              <div style={{ minWidth: "150px", display: "inline-block" }}>
                 {searchedData.Blood_group}
               </div>
               <div style={{ minWidth: "200px", display: "inline-block" }}>
@@ -161,10 +168,20 @@ class SearchDonor extends Component {
                 <a href="#">Edit</a>
               </div>
               <div
-                style={{ minWidth: "50px", display: "inline-block" }}
+                style={{ minWidth: "70px", display: "inline-block" }}
                 onClick={this.deleteDonor}
               >
                 <a href="#">Delete</a>
+              </div>
+              <div
+                style={{ minWidth: "230px", display: "inline-block" }}
+                onClick={() => {
+                  history.push(
+                    `/ListEmergencyContacts/${searchedData.Donor_id}/${searchedData.Name}`
+                  );
+                }}
+              >
+                <a href="#">Get</a>
               </div>
             </div>
           </div>

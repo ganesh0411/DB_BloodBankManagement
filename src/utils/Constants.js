@@ -20,3 +20,9 @@ export const GetAllActiveEventsUrl = "active_blood_donation_event";
 export const GetParticularEventUrl = "blood_donation_event";
 export const SendNotificationUrl = ":operator_id/send_notification";
 export const NotifyForLowBloodUrl = ":operator_id/limit_notified";
+export const AddEmergencyContactUrl = "bloodbank/donor/econtact";
+export const UpdateEmergencyContactUrl = "bloodbank/donor/econtact/update";
+export const DeleteEmergencyContactUrl = "bloodbank/donor/econtact/delete";
+export const GetAllEmergencyContactOfDonorUrl = "bloodbank/donor/econtact";
+export const GetParticularEmergencyContactOfDonorUrl =
+  "bloodbank/donor/econtact";

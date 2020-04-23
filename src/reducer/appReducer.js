@@ -21,6 +21,7 @@ const defaultState = {
   searchDonor: null,
   bloodLimit: [],
   lowBloodUnitList: [],
+  emergencyContactList: [],
 };
 
 const actionType = {
@@ -50,6 +51,7 @@ const actionType = {
   ADD_SEARCH_DONOR_LIST: "ADD_SEARCH_DONOR_LIST",
   ADD_BLOOD_LIMIT: "ADD_BLOOD_LIMIT",
   ADD_LOW_BLOOD_UNIT_LIST: "ADD_LOW_BLOOD_UNIT_LIST",
+  ADD_EMERGENCY_CONTACT_LIST: "ADD_EMERGENCY_CONTACT_LIST",
 };
 
 const appReducer = (state = defaultState, action) => {
@@ -127,6 +129,9 @@ const appReducer = (state = defaultState, action) => {
     }
     case actionType.ADD_LOW_BLOOD_UNIT_LIST: {
       return { ...state, lowBloodUnitList: action.payload };
+    }
+    case actionType.ADD_EMERGENCY_CONTACT_LIST: {
+      return { ...state, emergencyContactList: action.payload };
     }
     case actionType.RESET_TO_DEFAULT: {
       return { ...defaultState };
@@ -227,6 +232,9 @@ export const addLowBloodUnitList = (data) => {
 };
 export const addBloodLimit = (data) => {
   return { type: actionType.ADD_BLOOD_LIMIT, payload: data };
+};
+export const addEmergencyContactList = (data) => {
+  return { type: actionType.ADD_EMERGENCY_CONTACT_LIST, payload: data };
 };
 export const resetToDefault = () => {
   return { type: actionType.RESET_TO_DEFAULT };

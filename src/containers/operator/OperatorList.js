@@ -60,7 +60,7 @@ class OperatorList extends Component {
           <div style={{ minWidth: "300px", display: "inline-block" }}>
             Blood Bank name
           </div>
-          <div style={{ minWidth: "50px", display: "inline-block" }}>Edit</div>
+          {/* <div style={{ minWidth: "50px", display: "inline-block" }}>Edit</div> */}
           <div style={{ minWidth: "50px", display: "inline-block" }}>
             Delete
           </div>
@@ -119,14 +119,14 @@ class OperatorRow extends Component {
         <div style={{ minWidth: "300px", display: "inline-block" }}>
           {item.Bbank_Name}
         </div>
-        <div
+        {/* <div
           style={{ minWidth: "50px", display: "inline-block" }}
           onClick={() => {
             history.push(`/UpdateOperator/${item.Operator_id}`);
           }}
         >
           <a href="#">Edit</a>
-        </div>
+        </div> */}
         <div
           style={{ minWidth: "50px", display: "inline-block" }}
           onClick={this.delete}

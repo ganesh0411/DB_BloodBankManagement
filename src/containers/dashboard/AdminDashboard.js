@@ -1,11 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 
 export default class AdminDashboard extends Component {
-    render() {
-        return (
-            <div>
-                Admin dashboard
-            </div>
-        )
-    }
+  render() {
+    return <div className="card">Admin dashboard</div>;
+  }
 }

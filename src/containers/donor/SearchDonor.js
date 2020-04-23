@@ -5,15 +5,23 @@ import { connect } from "react-redux";
 import { history } from "../../Routes";
 import Modal from "../../components/Modal";
 import AddBloodUnit from "../blood/AddBloodUnit";
+import UpdateDonor from "./UpdateDonor";
 class SearchDonor extends Component {
   state = {
     data: {
       Email_id: "",
     },
     isOpen: false,
+    isEditOpen: false,
   };
   addUnit = () => {
     this.setState({ isOpen: true });
+  };
+  updateDonor = () => {
+    this.setState({ isEditOpen: true });
+  };
+  closeUpdateDonor = () => {
+    this.setState({ isEditOpen: false });
   };
   closeModal = () => {
     this.setState({ isOpen: false });
@@ -26,6 +34,12 @@ class SearchDonor extends Component {
     let { data } = this.state;
     data[key] = e.target.value;
     this.setState({ data });
+  };
+  deleteDonor = () => {
+    const { searchedData } = this.props;
+    this.props.deleteDonor(searchedData, () => {
+      this.props.reset();
+    });
   };
   search = (e) => {
     e.preventDefault();
@@ -43,13 +57,22 @@ class SearchDonor extends Component {
   };
   render() {
     const { Email_id } = this.state.data;
-    const { isOpen } = this.state;
+    const { isOpen, isEditOpen } = this.state;
     const { searchedData } = this.props;
     return (
       <React.Fragment>
         <div className="card" style={{ textAlign: "left" }}>
           <h4 style={{ textAlign: "left", paddingLeft: "10px" }}>
             Search Donor
+            <button
+              style={{ margin: "10px", display: "inline-block",float:'right' }}
+              className="commonbtn"
+              onClick={() => {
+                history.push("/AddDonor");
+              }}
+            >
+              Add Donor
+            </button>
           </h4>
           <form onSubmit={this.search}>
             <div style={{ margin: "10px", display: "inline-block" }}>
@@ -130,11 +153,17 @@ class SearchDonor extends Component {
               >
                 <a href="#">Add Blood Unit</a>
               </div>
-              <div style={{ minWidth: "50px", display: "inline-block" }}>
+              <div
+                style={{ minWidth: "50px", display: "inline-block" }}
+                onClick={this.updateDonor}
+              >
                 {" "}
                 <a href="#">Edit</a>
               </div>
-              <div style={{ minWidth: "50px", display: "inline-block" }}>
+              <div
+                style={{ minWidth: "50px", display: "inline-block" }}
+                onClick={this.deleteDonor}
+              >
                 <a href="#">Delete</a>
               </div>
             </div>
@@ -145,6 +174,14 @@ class SearchDonor extends Component {
             <AddBloodUnit
               closeModal={this.closeModal}
               Donor_id={searchedData.Donor_id}
+            />
+          </Modal>
+        )}
+        {searchedData && (
+          <Modal open={isEditOpen} closeHandler={this.closeUpdateDonor}>
+            <UpdateDonor
+              closeModal={this.closeUpdateDonor}
+              data={searchedData}
             />
           </Modal>
         )}

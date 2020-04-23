@@ -25,4 +25,4 @@ export const UpdateEmergencyContactUrl = "bloodbank/donor/econtact/update";
 export const DeleteEmergencyContactUrl = "bloodbank/donor/econtact/delete";
 export const GetAllEmergencyContactOfDonorUrl = "bloodbank/donor/econtact";
 export const GetParticularEmergencyContactOfDonorUrl =
-  "bloodbank/donor/econtact";
+  "bloodbank/donor/contact";

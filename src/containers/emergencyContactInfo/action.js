@@ -87,7 +87,7 @@ export const getAllDonorEmergencyContacts = (Donor_id) => {
     return axios
       .get(`${GetAllEmergencyContactOfDonorUrl}?Donor_id=${Donor_id}`)
       .then((response) => {
-        dispatch(addEmergencyContactList(response.data.entry));
+        dispatch(addEmergencyContactList(response.data.contact_list));
         dispatch(stopLoading());
       })
       .catch((e) => {

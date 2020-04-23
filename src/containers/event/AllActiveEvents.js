@@ -13,7 +13,7 @@ class ActveEventList extends Component {
     return (
       <div className="card">
         <h4 style={{ textAlign: "left", paddingLeft: "10px" }}>
-          List of Events
+          Upcoming Events
         </h4>
         <div
           style={{

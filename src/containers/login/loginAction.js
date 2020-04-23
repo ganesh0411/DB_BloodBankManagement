@@ -30,7 +30,7 @@ export const login = (data, callback) => {
 };
 
 export const adminLogin = (data, callback) => {
-  const loginDetail = { Email: data.email, Password: data.password };
+  const loginDetail = { Email_id: data.email, Password: data.password };
   return (dispatch, getState) => {
     dispatch(startLoading());
     return axios

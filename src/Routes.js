@@ -37,6 +37,7 @@ import AddEvent from "./containers/event/AddEvent";
 import BloodLimitList from "./containers/bloodLimit/BloodLimitList";
 import UpdateBloodLimit from "./containers/bloodLimit/UpdateBloodLimit";
 import SendNotification from "./containers/sendNotification/SendNotification";
+import AdminDashboard from "./containers/dashboard/AdminDashboard";
 
 export const history = createBrowserHistory();
 
@@ -98,7 +99,7 @@ class Routes extends Component {
           {this.props.auth &&
             this.props.auth.loginData &&
             this.props.auth.loginData.access_token && (
-              <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-default">
+              <nav className="navbar navbar-expand-lg navbar-light bg-light navbar-default">
                 <button
                   class="navbar-toggler"
                   type="button"
@@ -115,11 +116,14 @@ class Routes extends Component {
                     <li
                       class="nav-item"
                       onClick={() => {
-                        history.push("/Dashboard");
+                        const url = this.props.auth.loginData.DBA_id
+                          ? "/adminDashboard"
+                          : "/Dashboard";
+                        history.push(url);
                       }}
                     >
                       <a class="nav-link" href="#">
-                        Home <span class="sr-only">(current)</span>
+                        Home
                       </a>
                     </li>
                     <li
@@ -133,66 +137,78 @@ class Routes extends Component {
                       </a>
                     </li>
 
-                    <li
-                      class="nav-item"
-                      onClick={() => {
-                        history.push(`/ListBranch`);
-                      }}
-                    >
-                      <a class="nav-link" href="#">
-                        Branch List
-                      </a>
-                    </li>
-                    <li
-                      class="nav-item"
-                      onClick={() => {
-                        history.push(`/ListOperator`);
-                      }}
-                    >
-                      <a class="nav-link" href="#">
-                        Operator List
-                      </a>
-                    </li>
-                    <li
-                      class="nav-item"
-                      onClick={() => {
-                        history.push(`/BloodBankList`);
-                      }}
-                    >
-                      <a class="nav-link" href="#">
-                        Blood Bank List
-                      </a>
-                    </li>
-                    <li
-                      class="nav-item"
-                      onClick={() => {
-                        history.push(`/EventList`);
-                      }}
-                    >
-                      <a class="nav-link" href="#">
-                        Event List
-                      </a>
-                    </li>
-                    <li
-                      class="nav-item"
-                      onClick={() => {
-                        history.push(`/BloodLimitList`);
-                      }}
-                    >
-                      <a class="nav-link" href="#">
-                        Blood Limit List
-                      </a>
-                    </li>
-                    <li
-                      class="nav-item"
-                      onClick={() => {
-                        history.push(`/SearchDonor`);
-                      }}
-                    >
-                      <a class="nav-link" href="#">
-                        Search Donor
-                      </a>
-                    </li>
+                    {this.props.auth.loginData.Operator_id && (
+                      <li
+                        class="nav-item"
+                        onClick={() => {
+                          history.push(`/ListBranch`);
+                        }}
+                      >
+                        <a class="nav-link" href="#">
+                          Branch List
+                        </a>
+                      </li>
+                    )}
+                    {this.props.auth.loginData.DBA_id && (
+                      <li
+                        class="nav-item"
+                        onClick={() => {
+                          history.push(`/ListOperator`);
+                        }}
+                      >
+                        <a class="nav-link" href="#">
+                          Operator List
+                        </a>
+                      </li>
+                    )}
+                    {this.props.auth.loginData.DBA_id && (
+                      <li
+                        class="nav-item"
+                        onClick={() => {
+                          history.push(`/BloodBankList`);
+                        }}
+                      >
+                        <a class="nav-link" href="#">
+                          Blood Bank List
+                        </a>
+                      </li>
+                    )}
+                    {this.props.auth.loginData.Operator_id && (
+                      <li
+                        class="nav-item"
+                        onClick={() => {
+                          history.push(`/EventList`);
+                        }}
+                      >
+                        <a class="nav-link" href="#">
+                          Event List
+                        </a>
+                      </li>
+                    )}
+                    {this.props.auth.loginData.Operator_id && (
+                      <li
+                        class="nav-item"
+                        onClick={() => {
+                          history.push(`/BloodLimitList`);
+                        }}
+                      >
+                        <a class="nav-link" href="#">
+                          Blood Limit List
+                        </a>
+                      </li>
+                    )}
+                    {this.props.auth.loginData.Operator_id && (
+                      <li
+                        class="nav-item"
+                        onClick={() => {
+                          history.push(`/SearchDonor`);
+                        }}
+                      >
+                        <a class="nav-link" href="#">
+                          Search Donor
+                        </a>
+                      </li>
+                    )}
                   </ul>
 
                   <ul className="nav navbar-nav navbar-right">
@@ -335,6 +351,12 @@ class Routes extends Component {
               <PrivateRoute
                 path={"/AddEvent"}
                 component={AddEvent}
+                exact={true}
+                type="create"
+              />
+              <PrivateRoute
+                path={"/adminDashboard"}
+                component={AdminDashboard}
                 exact={true}
                 type="create"
               />

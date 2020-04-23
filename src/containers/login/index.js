@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
-import { login } from "./loginAction";
+import { login, adminLogin } from "./loginAction";
 import { fakeAuth, history } from "../../Routes";
 import "./index.scss";
 import { fetchFromObject, setDeep } from "../../utils/utilityFunctions";
@@ -15,6 +15,7 @@ import BackgroundImage from "../../assets/images/background.jpg";
 export class Login extends Component {
   state = {
     redirectToReferrer: false,
+    user: "operator",
     formConfig: {
       email: {
         type: "text",
@@ -119,20 +120,33 @@ export class Login extends Component {
   login = (e) => {
     e.preventDefault();
     const isFormValid = this.validateForm();
+
     if (isFormValid.isValid) {
-      this.props.login(isFormValid.obj, () => {
-        fakeAuth.authenticate(() => {
-          this.setState({ redirectToReferrer: true });
+      const { user } = this.state;
+      if (user == "operator") {
+        this.props.login(isFormValid.obj, () => {
+          fakeAuth.authenticate(() => {
+            this.setState({ redirectToReferrer: true });
+          });
         });
-      });
+      } else {
+        this.props.adminLogin(isFormValid.obj, () => {
+          fakeAuth.authenticate(() => {
+            history.push('/adminDashboard')
+          });
+        });
+      }
     }
+  };
+  updateUser = (e) => {
+    this.setState({ user: e.target.value });
   };
 
   render() {
     let { from } = this.props.location.state || {
       from: { pathname: `/Dashboard` },
     };
-    let { redirectToReferrer } = this.state;
+    let { redirectToReferrer, user } = this.state;
     const { email, password } = this.state.formConfig;
 
     if (redirectToReferrer) return <Redirect to={from} />;
@@ -156,6 +170,22 @@ export class Login extends Component {
           <div className="loginforminn">
             <Input {...email} onChange={this.onInputChange} />
             <Input {...password} onChange={this.onInputChange} />
+            <input
+              type="radio"
+              name="user"
+              value={"operator"}
+              checked={user == "operator"}
+              onChange={this.updateUser}
+            />
+            <label>Operator</label>
+            <input
+              type="radio"
+              name="user"
+              value={"admin"}
+              checked={user == "admin"}
+              onChange={this.updateUser}
+            />
+            <label>Admin</label>
 
             <button type="submit" className="commonbtn">
               Login
@@ -175,6 +205,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     login: (data, callback) => {
       dispatch(login(data, callback));
+    },
+    adminLogin: (data, callback) => {
+      dispatch(adminLogin(data, callback));
     },
   };
 };

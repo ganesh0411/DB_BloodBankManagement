@@ -17,4 +17,6 @@ export const GetAllEventsUrl = "/:operator_id/blood_donation_event/all";
 export const AddBranchUrl = ":operator_id/branches";
 export const GetBranchDetailUrl = ":operator_id/branch_info";
 export const GetAllActiveEventsUrl = "active_blood_donation_event";
+export const GetParticularEventUrl = "blood_donation_event";
 export const SendNotificationUrl = ":operator_id/send_notification";
+export const NotifyForLowBloodUrl = ":operator_id/limit_notified";

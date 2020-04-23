@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { updateEvent } from "./action";
+import { updateEvent, getParticularEventInfo } from "./action";
 import { connect } from "react-redux";
 import { history } from "../../Routes";
 class UpdateEvent extends Component {
@@ -16,8 +16,10 @@ class UpdateEvent extends Component {
   componentDidMount() {
     const { Drive_id } = this.props.match.params;
     const { allEvents } = this.props;
-
-    this.setState({ data: allEvents.filter((i) => i.Drive_id == Drive_id)[0] });
+    this.props.getParticularEventInfo(Drive_id, (data) => {
+      this.setState({ data });
+    });
+    // this.setState({ data: allEvents.filter((i) => i.Drive_id == Drive_id)[0] });
   }
   handleChange = (e) => {
     const key = e.target.name;
@@ -94,6 +96,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     updateEvent: (data, callback) => {
       dispatch(updateEvent(data, callback));
+    },
+    getParticularEventInfo: (Drive_id, callback) => {
+      dispatch(getParticularEventInfo(Drive_id, callback));
     },
   };
 };

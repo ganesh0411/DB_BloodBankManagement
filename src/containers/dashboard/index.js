@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { getBloodcountAndBloodBankName } from "../blood/action";
 import BlooCountForBloodBank from "../blood/BlooCountForBloodBank";
 import { history } from "../../Routes";
+import ShowMessageForLowBloodLimit from "../blood/ShowMessageForLowBloodLimit";
 class index extends Component {
   componentDidMount() {
     this.props.getBloodcountAndBloodBankName();
@@ -144,6 +145,7 @@ class index extends Component {
             </h5>
           </div>
         </div>
+        <ShowMessageForLowBloodLimit />
       </div>
     );
   }

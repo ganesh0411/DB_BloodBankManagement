@@ -14,17 +14,17 @@ class UpdateOperator extends Component {
     },
   };
   componentDidMount() {
-    const {Operator_id}=this.props.match.params
-    const {operatorList}=this.props;
+    const { Operator_id } = this.props.match.params;
+    const { operatorList } = this.props;
     if (this.props.bloodBanks.length == 0) {
       this.props.getBloodBankList();
     }
-    if(this.props.operatorList.length>0){
-      let data=operatorList.filter(i=>i.Operator_id==Operator_id)[0];
-      data.Password="";
-      this.setState({data});
-    }
 
+    if (this.props.operatorList.length > 0) {
+      let data = operatorList.filter((i) => i.Operator_id == Operator_id)[0];
+      data.Password = "";
+      this.setState({ data });
+    }
   }
   handleChange = (e) => {
     const key = e.target.name;

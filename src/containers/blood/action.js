@@ -2,7 +2,7 @@ import axios from "axios";
 import {
   AddBloodUnitUrl,
   ExpiredBloodUnitUrl,
-  BloodLimitUrl,
+  NotifyForLowBloodUrl,
   GuestBloodUnitUrl,
 } from "../../utils/Constants";
 import {
@@ -17,6 +17,7 @@ import {
   addBloodBanksUnitsCountForGuest,
   addBloodBankBranchesUnitsCountForGuest,
   addBranchBloodGroupUnitsCountForGuest,
+  addLowBloodUnitList,
 } from "../../reducer/appReducer";
 import { handleCatch } from "../../utils/utilityFunctions";
 
@@ -262,8 +263,6 @@ export const deleteExpiredBloodUnitInBloodBank = (Bbank_id, callback) => {
   };
 };
 
-
-
 export const getBloodCountByBloodBankForGuest = () => {
   return (dispatch, getState) => {
     dispatch(startLoading());
@@ -304,6 +303,26 @@ export const getBloodCountForBranchForGuest = (Br_id) => {
       .get(`${GuestBloodUnitUrl}?case=3&Br_id=${Br_id}`)
       .then((response) => {
         dispatch(addBranchBloodGroupUnitsCountForGuest(response.data.result));
+        dispatch(stopLoading());
+      })
+      .catch((e) => {
+        dispatch(stopLoading());
+        handleCatch(e);
+      });
+  };
+};
+
+export const getLowBloodUnitList = () => {
+  return (dispatch, getState) => {
+    dispatch(startLoading());
+    const url = NotifyForLowBloodUrl.replace(
+      ":operator_id",
+      getState().auth.loginData.Operator_id
+    );
+    return axios
+      .get(`${url}?Bbank_id=${getState().auth.loginData.Bbank_id}`)
+      .then((response) => {
+        dispatch(addLowBloodUnitList(response.data.result));
         dispatch(stopLoading());
       })
       .catch((e) => {

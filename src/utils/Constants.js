@@ -1,5 +1,6 @@
 // export const EmailRegex=\\
 export const LoginUrl = "operator_login";
+export const AdminLoginUrl = "admin_login";
 export const GuestBloodUnitUrl = "guest_user/blood";
 export const AddBloodUnitUrl = ":operator_id/blood";
 export const ExpiredBloodUnitUrl = ":operator_id/expired_blood";

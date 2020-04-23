@@ -5,7 +5,7 @@ import {
   stopLoading,
   addUserData,
 } from "../../reducer/appReducer";
-import { LoginUrl } from "../../utils/Constants";
+import { LoginUrl, AdminLoginUrl } from "../../utils/Constants";
 import { setAuthorizationTokenInHeader } from "../../utils/axioConfig";
 import { handleCatch } from "../../utils/utilityFunctions";
 // import {getUserData} from '../CommonActions';
@@ -19,9 +19,27 @@ export const login = (data, callback) => {
         localStorage.setItem("loginData", JSON.stringify(response.data));
         await setAuthorizationTokenInHeader(response.data.access_token);
         dispatch(addLoginData(response.data));
-        //dispatch(addUserData(response.data.user));
         dispatch(stopLoading());
-        //  dispatch(getUserData())
+        return callback();
+      })
+      .catch((e) => {
+        dispatch(stopLoading());
+        handleCatch(e);
+      });
+  };
+};
+
+export const adminLogin = (data, callback) => {
+  const loginDetail = { Email: data.email, Password: data.password };
+  return (dispatch, getState) => {
+    dispatch(startLoading());
+    return axios
+      .post(AdminLoginUrl, loginDetail)
+      .then(async (response) => {
+        localStorage.setItem("loginData", JSON.stringify(response.data));
+        await setAuthorizationTokenInHeader(response.data.access_token);
+        dispatch(addLoginData(response.data));
+        dispatch(stopLoading());
         return callback();
       })
       .catch((e) => {

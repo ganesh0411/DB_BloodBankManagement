@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { updateBloodUnit, deleteBloodUnit } from "./action";
 import { history } from "../../Routes";
+import Modal from "../../components/Modal";
+import UpdateBloodUnit from "../blood/UpdateBloodUnit";
 class BloodUnitList extends Component {
   render() {
     const { data, Br_id, isExpired } = this.props;
@@ -69,6 +71,18 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(null, mapDispatchToProps)(BloodUnitList);
 
 class BloodUnitRow extends Component {
+  state = {
+    isOpen: false,
+  };
+  updateUnit = () => {
+    this.setState({ isOpen: true });
+  };
+  closeModal = (data) => {
+    this.setState({
+      isOpen: false,
+      Special_Attributes: data.Special_Attributes,
+    });
+  };
   delete = () => {
     let { Br_id, data } = this.props;
     if (!Br_id) {
@@ -80,6 +94,7 @@ class BloodUnitRow extends Component {
   };
 
   render() {
+    const { isOpen, Special_Attributes } = this.state;
     const { data: item, isExpired } = this.props;
     return (
       <div
@@ -105,10 +120,13 @@ class BloodUnitRow extends Component {
           {item.Date_of_Expiry.split(" 00:00:00 GMT")[0]}
         </div>
         <div style={{ minWidth: "250px", display: "inline-block" }}>
-          {item.Special_Attributes}
+          {Special_Attributes || item.Special_Attributes}
         </div>
         {!isExpired && (
-          <div style={{ minWidth: "50px", display: "inline-block" }}>
+          <div
+            style={{ minWidth: "50px", display: "inline-block" }}
+            onClick={this.updateUnit}
+          >
             <a href="#">Edit</a>
           </div>
         )}
@@ -118,6 +136,14 @@ class BloodUnitRow extends Component {
         >
           <a href="#">Delete</a>
         </div>
+        <Modal open={isOpen} closeHandler={this.closeModal}>
+          <UpdateBloodUnit
+            closeModal={this.closeModal}
+            Br_id={this.props.Br_id}
+            Blood_id={item.Blood_id}
+            Special_Attributes={item.Special_Attributes}
+          />
+        </Modal>
       </div>
     );
   }

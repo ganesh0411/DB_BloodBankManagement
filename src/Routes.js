@@ -75,8 +75,8 @@ const PrivateRoute = ({ component: Component, path, ...rest }) => {
 export const logoutUser = () => {
   localStorage.clear();
   setAuthorizationTokenInHeader();
-  fakeAuth.signout(() => {
-    store.dispatch(logOut());
+  fakeAuth.signout(async () => {
+    await store.dispatch(logOut());
     store.dispatch(resetToDefault());
     history.push(`/login`);
   });
@@ -98,7 +98,7 @@ class Routes extends Component {
           {this.props.auth &&
             this.props.auth.loginData &&
             this.props.auth.loginData.access_token && (
-              <nav class="navbar navbar-expand-lg navbar-light bg-light">
+              <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-default">
                 <button
                   class="navbar-toggler"
                   type="button"
@@ -191,6 +191,19 @@ class Routes extends Component {
                     >
                       <a class="nav-link" href="#">
                         Search Donor
+                      </a>
+                    </li>
+                  </ul>
+
+                  <ul className="nav navbar-nav navbar-right">
+                    {" "}
+                    <li
+                      class="nav-item"
+                      style={{ float: "right" }}
+                      onClick={logoutUser}
+                    >
+                      <a class="nav-link" href="#">
+                        Logout
                       </a>
                     </li>
                   </ul>
@@ -331,6 +344,7 @@ class Routes extends Component {
                 exact={true}
               />
               <Route path={`/login`} component={Login} />
+              {/* <PrivateRoute path={`/logout`} component={Logout} /> */}
               <Route path={`/`} component={Guest} />
               <PrivateRoute path={`/app`} component={App} />
               <Route component={PageNotFound} />

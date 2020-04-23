@@ -52,7 +52,7 @@ export class Login extends Component {
   };
 
   componentDidMount() {
-    if (this.props.auth.loginData) {
+    if (this.props.auth.loginData && fakeAuth.isAuthenticated) {
       this.setState({ redirectToReferrer: true });
     }
   }
@@ -129,7 +129,6 @@ export class Login extends Component {
   };
 
   render() {
-    console.log(this.props);
     let { from } = this.props.location.state || {
       from: { pathname: `/Dashboard` },
     };
@@ -137,7 +136,7 @@ export class Login extends Component {
     const { email, password } = this.state.formConfig;
 
     if (redirectToReferrer) return <Redirect to={from} />;
-  
+
     return (
       <div
         className="loginpage"

@@ -13,7 +13,7 @@ export class AddDonor extends Component {
       Zip: "",
       Paid_Unpaid: false,
       Notification_Subscription: true,
-      Notification_Type: "text",
+      Notification_Type: "1",
       Operator_id: this.props.Operator_id,
       Emails: [""],
       Br_id: "-1",
@@ -45,6 +45,12 @@ export class AddDonor extends Component {
   deleteEmail = (index) => {
     let data = this.state.data;
     data.Emails.splice(index, 1);
+    this.setState({ data });
+  };
+  checkBoxHandler = (e) => {
+    const key = e.target.name;
+    let { data } = this.state;
+    data[key] = e.target.checked;
     this.setState({ data });
   };
   handleChange = (e) => {
@@ -113,6 +119,7 @@ export class AddDonor extends Component {
       Zip,
       Paid_Unpaid,
       Notification_Subscription,
+      Notification_Type,
       Emails,
       Br_id,
       Phones,
@@ -188,6 +195,41 @@ export class AddDonor extends Component {
               ))}
             </select>
           </div>
+          <div style={{ margin: "10px", display: "inline-block" }}>
+            <input
+              type="checkbox"
+              name="Notification_Subscription"
+              checked={Notification_Subscription}
+              onChange={this.checkBoxHandler}
+            />
+            <label for="Notification_Subscription">
+              Subscribe for Notification
+            </label>
+          </div>
+
+          <div style={{ margin: "10px", display: "inline-block" }}>
+            <label>Notification Type : </label>
+
+            <select
+              name="Notification_Type"
+              value={Notification_Type}
+              onChange={this.handleChange}
+            >
+              <option value={1}>Mail</option>
+              <option value={2}>Text Message</option>
+            </select>
+          </div>
+          <div style={{ margin: "10px", display: "inline-block" }}>
+            <input
+              type="checkbox"
+              name="Paid_Unpaid"
+              checked={Paid_Unpaid}
+              onChange={this.checkBoxHandler}
+            />
+            <label for="Paid_Unpaid">
+             Paid Donor
+            </label>
+          </div>
           <div style={{ margin: "10px" }}>
             <label>Emails : </label>
             <span onClick={this.addEmail}>
@@ -212,7 +254,6 @@ export class AddDonor extends Component {
               </div>
             ))}
           </div>
-
           <div style={{ margin: "10px" }}>
             <label>Phone No : </label>
             <span onClick={this.addPhone}>

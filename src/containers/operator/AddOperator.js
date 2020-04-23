@@ -69,7 +69,7 @@ class AddOperator extends Component {
           <div style={{ margin: "10px", display: "inline-block" }}>
             <label>Password : </label>
             <input
-              type="text"
+              type="password"
               name="Password"
               value={Password}
               onChange={this.handleChange}

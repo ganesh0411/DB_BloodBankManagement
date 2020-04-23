@@ -7,7 +7,6 @@ export class UpdateDonor extends Component {
   state = {
     data: {
       Name: "",
-      Blood_Group: "1",
       Street: "",
       City: "",
       Zip: "",
@@ -37,18 +36,18 @@ export class UpdateDonor extends Component {
     });
     data.Phones = phone_arr;
     data.Emails = email_arr;
-    let map = [
-      { key: "O+", value: "1" },
-      { key: "A+", value: "2" },
-      { key: "B+", value: "3" },
-      { key: "AB+", value: "4" },
-      { key: "O-", value: "5" },
-      { key: "A-", value: "6" },
-      { key: "B-", value: "7" },
-      { key: "AB-", value: "8" },
-    ];
-    data.Blood_Group = map.filter((i) => i.key == data.Blood_group)[0].value;
-
+    // let map = [
+    //   { key: "O+", value: "1" },
+    //   { key: "A+", value: "2" },
+    //   { key: "B+", value: "3" },
+    //   { key: "AB+", value: "4" },
+    //   { key: "O-", value: "5" },
+    //   { key: "A-", value: "6" },
+    //   { key: "B-", value: "7" },
+    //   { key: "AB-", value: "8" },
+    // ];
+    // data.Blood_Group = map.filter((i) => i.key == data.Blood_group)[0].value;
+    data.Notification_Type = data.Notification_Type == "Mail" ? 1 : 2;
     this.setState({ data });
   }
   addPhone = () => {
@@ -60,6 +59,12 @@ export class UpdateDonor extends Component {
   deletePhone = (index) => {
     let data = this.state.data;
     data.Phones.splice(index, 1);
+    this.setState({ data });
+  };
+  checkBoxHandler = (e) => {
+    const key = e.target.name;
+    let { data } = this.state;
+    data[key] = e.target.checked;
     this.setState({ data });
   };
   addEmail = () => {
@@ -103,7 +108,6 @@ export class UpdateDonor extends Component {
     } = data;
     if (
       Name &&
-      Blood_Group &&
       Street &&
       City &&
       Zip &&
@@ -123,9 +127,10 @@ export class UpdateDonor extends Component {
         let i = index + 1;
         emailObj["Email" + i] = item;
       });
-      this.props.updateDonor({ ...data, Phones: obj, Emails: emailObj }, () => {
-        history.push("/SearchDonor");
-      });
+      this.props.updateDonor(
+        { ...data, Phones: obj, Emails: emailObj },
+        this.props.closeModal
+      );
     } else {
       alert("Please enter valid data");
     }
@@ -139,6 +144,7 @@ export class UpdateDonor extends Component {
       Zip,
       Paid_Unpaid,
       Notification_Subscription,
+      Notification_Type,
       Emails,
       Br_id,
       Phones,
@@ -147,7 +153,7 @@ export class UpdateDonor extends Component {
     const { branches } = this.props;
     return (
       <div style={{ textAlign: "left" }}>
-        <h4 style={{ textAlign: "left", paddingLeft: "10px" }}>Add Donor</h4>
+        <h4 style={{ textAlign: "left", paddingLeft: "10px" }}>Update Donor</h4>
         <form onSubmit={this.update}>
           <div style={{ margin: "10px", display: "inline-block" }}>
             <label>Name : </label>
@@ -213,6 +219,38 @@ export class UpdateDonor extends Component {
                 </option>
               ))}
             </select>
+          </div>
+          <div style={{ margin: "10px", display: "inline-block" }}>
+            <input
+              type="checkbox"
+              name="Notification_Subscription"
+              checked={Notification_Subscription}
+              onChange={this.checkBoxHandler}
+            />
+            <label for="Notification_Subscription">
+              Subscribe for Notification
+            </label>
+          </div>
+          <div style={{ margin: "10px", display: "inline-block" }}>
+            <label>Notification Type : </label>
+
+            <select
+              name="Notification_Type"
+              value={Notification_Type}
+              onChange={this.handleChange}
+            >
+              <option value={1}>Mail</option>
+              <option value={2}>Text Message</option>
+            </select>
+          </div>
+          <div style={{ margin: "10px", display: "inline-block" }}>
+            <input
+              type="checkbox"
+              name="Paid_Unpaid"
+              checked={Paid_Unpaid}
+              onChange={this.checkBoxHandler}
+            />
+            <label for="Paid_Unpaid">Paid Donor</label>
           </div>
           <div style={{ margin: "10px" }}>
             <label>Emails : </label>

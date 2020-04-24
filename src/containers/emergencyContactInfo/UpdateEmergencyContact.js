@@ -24,6 +24,7 @@ class UpdateEmergencyContact extends Component {
       data.Emails = email_arr;
       this.setState({
         data: {
+          ...this.state.data,
           Donor_id: data.Donor_id,
           Name: data.Name,
           Emails: data.Emails,
@@ -57,16 +58,26 @@ class UpdateEmergencyContact extends Component {
   update = (e) => {
     e.preventDefault();
     const { data } = this.state;
-    this.props.updateEmergencyContact(data, () => {
-      const { Donor_id, Donor_Name } = this.props.match.params;
-      history.push(`/ListEmergencyContacts/${Donor_id}/${Donor_Name}`);
-    });
+    let emailObj = {};
+    const { Name, Phone_no, Emails } = data;
+    if (Name && Phone_no && Emails.length > 0) {
+      Emails.forEach((item, index) => {
+        let i = index + 1;
+        emailObj["Email" + i] = item;
+      });
+      this.props.updateEmergencyContact({ ...data, Emails: emailObj }, () => {
+        const { Donor_id, Donor_Name } = this.props.match.params;
+        history.push(`/ListEmergencyContacts/${Donor_id}/${Donor_Name}`);
+      });
+    } else {
+      alert("Please enter valid data.");
+    }
   };
   render() {
     const { Donor_Name } = this.props.match.params;
     const { Name, Phone_no, Emails } = this.state.data;
     return (
-      <div className="card">
+      <div className="card" style={{ textAlign: "left"}}>
         <h4 style={{ textAlign: "left", paddingLeft: "10px" }}>
           Update Emergency Contact for donor :<b> {Donor_Name}</b>.
         </h4>
@@ -87,6 +98,7 @@ class UpdateEmergencyContact extends Component {
               name="Phone_no"
               value={Phone_no}
               readOnly
+              disabled
               onChange={this.handleChange}
             />
           </div>

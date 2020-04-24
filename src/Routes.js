@@ -111,7 +111,10 @@ class Routes extends Component {
             this.props.auth.loginData.access_token && (
               <nav
                 className="navbar navbar-expand-lg navbar-light  navbar-default"
-                style={{ backgroundColor: "#ff0260b8", color: "white" }}
+                style={{
+                  backgroundColor: "rgba(255, 197, 218, 0.89)",
+                  color: "white",
+                }}
               >
                 <button
                   class="navbar-toggler"
@@ -226,17 +229,13 @@ class Routes extends Component {
 
                   <ul
                     className="nav navbar-nav navbar-right"
-                    style={{ position: "fixed", right: "10px" }}
+                    style={{ position: "fixed", right: "10px",top:'-20px' }}
                   >
                     {" "}
-                    <li
-                      class="nav-item"
-                      style={{ float: "right" }}
-                      onClick={logoutUser}
-                    >
-                      <a class="nav-link" href="#">
+                    <li class="nav-item" style={{ float: "right" }}>
+                      <button className="commonbtn" onClick={logoutUser}>
                         Logout
-                      </a>
+                      </button>
                     </li>
                   </ul>
                 </div>

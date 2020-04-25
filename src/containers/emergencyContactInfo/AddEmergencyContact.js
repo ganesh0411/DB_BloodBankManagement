@@ -1,3 +1,4 @@
+//SJSU CMPE 138 Spring2020 TEAM7
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { addEmergencyContact } from "./action";

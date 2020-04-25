@@ -1,3 +1,4 @@
+//SJSU CMPE 138 Spring2020 TEAM7
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.scss";

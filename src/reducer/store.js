@@ -1,3 +1,4 @@
+//SJSU CMPE 138 Spring2020 TEAM7
 import thunk from "redux-thunk";
 import { createStore, applyMiddleware } from "redux";
 import logger from "redux-logger";

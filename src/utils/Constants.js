@@ -1,4 +1,4 @@
-// export const EmailRegex=\\
+//SJSU CMPE 138 Spring2020 TEAM7
 export const LoginUrl = "operator_login";
 export const AdminLoginUrl = "admin_login";
 export const GuestBloodUnitUrl = "guest_user/blood";

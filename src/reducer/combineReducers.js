@@ -1,3 +1,4 @@
+//SJSU CMPE 138 Spring2020 TEAM7
 import { combineReducers } from "redux";
 
 import AppReducer from "./appReducer";

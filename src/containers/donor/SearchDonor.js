@@ -1,3 +1,4 @@
+//SJSU CMPE 138 Spring2020 TEAM7
 import React, { Component } from "react";
 import { getDonorByEmailId, deleteDonor } from "./action";
 import { addSearchDonorList } from "../../reducer/appReducer";

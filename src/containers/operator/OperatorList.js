@@ -1,3 +1,4 @@
+//SJSU CMPE 138 Spring2020 TEAM7
 import React, { Component } from "react";
 import { getAllOpeators, deleteOperator } from "./action";
 import { connect } from "react-redux";

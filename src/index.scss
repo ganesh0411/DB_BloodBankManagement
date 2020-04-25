@@ -1,3 +1,4 @@
+//SJSU CMPE 138 Spring2020 TEAM7
 @import "./variables.scss";
 
 body {
@@ -71,13 +72,13 @@ div.card {
   margin-bottom: 0.5%;
   width: 97%;
   margin-left: 1.5%;
-  margin-right:1.5%;
+  margin-right: 1.5%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   text-align: center;
   background-color: rgba(255, 197, 218, 0.89);
   // color: white;
 }
 
-.selected{
+.selected {
   background-color: lightblue;
 }

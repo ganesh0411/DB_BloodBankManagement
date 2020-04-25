@@ -1,3 +1,4 @@
+//SJSU CMPE 138 Spring2020 TEAM7
 import { logoutUser } from "../Routes";
 import { addSnackbar } from "../reducer/appReducer";
 import store from "../reducer/store";

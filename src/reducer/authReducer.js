@@ -1,3 +1,4 @@
+//SJSU CMPE 138 Spring2020 TEAM7
 const defaultState = {
   loginData: localStorage.loginData ? JSON.parse(localStorage.loginData) : null,
 };

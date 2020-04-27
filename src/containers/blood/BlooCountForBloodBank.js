@@ -6,7 +6,7 @@ import { getBloodCountForBloodBank } from "./action";
 import { history } from "../../Routes";
 class BlooCountForBloodBank extends Component {
   componentDidMount() {
-    this.props.getData(1);
+    this.props.getData(this.props.Bbank_id);
   }
   componentWillUnmount() {
     this.props.reset();
@@ -42,6 +42,7 @@ class BlooCountForBloodBank extends Component {
 const mapStateToProps = (state) => {
   return {
     data: state.app.bloodCountForBloodBank,
+    Bbank_id: state.auth.loginData.Bbank_id,
   };
 };
 
@@ -64,7 +65,9 @@ export default connect(
 class BlooCountForBloodBankItem extends Component {
   redirect = () => {
     const { data } = this.props;
-    history.push(`/branch/bloodunits/${data.Br_id}/${data.Br_Type}, ${data.Street}, ${data.City}, ${data.Zip}`);
+    history.push(
+      `/branch/bloodunits/${data.Br_id}/${data.Br_Type}, ${data.Street}, ${data.City}, ${data.Zip}`
+    );
   };
   render() {
     const { data: item } = this.props;
@@ -80,7 +83,9 @@ class BlooCountForBloodBankItem extends Component {
         }}
         onClick={this.redirect}
       >
-        <a href="#">{item.Br_Type}, {item.Street}, {item.City}, {item.Zip}</a>
+        <a href="#">
+          {item.Br_Type}, {item.Street}, {item.City}, {item.Zip}
+        </a>
         <span style={{ float: "right" }}>
           <b>{item.Blood_Unit_Count}</b> Units
         </span>
